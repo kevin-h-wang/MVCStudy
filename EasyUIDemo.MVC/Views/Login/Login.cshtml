@@ -28,19 +28,16 @@
                 dataType: "json",
                 data: { "Name": $("#UserName").val(), "Password": $("#Password").val() },
                 success: function (data) {
-                    alert(data);
                     if (data.result == "success") {
                         //window.location.href = "Home/GetView?viewPara=Index";
                         //window.location.href = "@Url.Content("/Home/Index/")";
                         window.location.href = "/Home/Index";
                     }
                     else {
-                        alert(data.content);
                         window.location.href = "/Login/Login/";
                     }
                 },
                 error: function (xhr, error, ex) {
-                    alert($("#UserName").val());
                     alert("出现错误，请稍后再试，带来不便，敬请谅解");
                     window.location.href = "/Login/Login/";
                 }
