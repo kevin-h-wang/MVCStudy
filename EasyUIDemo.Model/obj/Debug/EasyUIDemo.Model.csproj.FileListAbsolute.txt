@@ -29,3 +29,15 @@ F:\KevinSpace\Git\EasyUIDemo.MVC\EasyUIDemo.Model\obj\Debug\EasyUIDemo.Model.dll
 F:\KevinSpace\Git\EasyUIDemo.MVC\EasyUIDemo.Model\obj\Debug\EasyUIDemo.Model.pdb
 F:\KevinSpace\Git\EasyUIDemo.MVC\EasyUIDemo.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
 F:\KevinSpace\Git\EasyUIDemo.MVC\EasyUIDemo.Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EasyUIDemo.Model.dll.config
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EasyUIDemo.Model.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EasyUIDemo.Model.pdb
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EntityFramework.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EntityFramework.SqlServer.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EntityFramework.xml
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\EntityFramework.SqlServer.xml
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\obj\Debug\EasyUIDemo.Model.csprojResolveAssemblyReference.cache
+F:\GitHub\MVCStudy\EasyUIDemo.Model\obj\Debug\EasyUIDemo.Model.dll
+F:\GitHub\MVCStudy\EasyUIDemo.Model\obj\Debug\EasyUIDemo.Model.pdb

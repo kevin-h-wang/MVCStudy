@@ -1874,9 +1874,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\User\User_Add.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\User\User_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -1890,6 +1887,9 @@
       <Project>{edcc06ec-f964-49e3-b0eb-d096c6a7d876}</Project>
       <Name>EasyUIDemo.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Car\CarList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

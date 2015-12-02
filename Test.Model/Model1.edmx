@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="qds162435604_dbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="qds162435604_dbModelStoreContainer">
+          <EntitySet Name="tblCarNO" EntityType="qds162435604_dbModel.Store.tblCarNO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCarNO_bak" EntityType="qds162435604_dbModel.Store.tblCarNO_bak" store:Type="Tables" store:Schema="dbo" store:Name="tblCarNO_bak">
+            <DefiningQuery>SELECT 
+      [tblCarNO_bak].[ID] AS [ID], 
+      [tblCarNO_bak].[CarNo] AS [CarNo], 
+      [tblCarNO_bak].[Adress] AS [Adress], 
+      [tblCarNO_bak].[Mobile] AS [Mobile], 
+      [tblCarNO_bak].[Memo] AS [Memo]
+      FROM [dbo].[tblCarNO_bak] AS [tblCarNO_bak]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserInfo" EntityType="qds162435604_dbModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tblCarNO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="CarNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“qds162435604_db.dbo.tblCarNO_bak”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="tblCarNO_bak">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CarNo" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="CarNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nchar" MaxLength="40" />
+          <Property Name="Password" Type="varchar" MaxLength="40" />
+          <Property Name="Mail" Type="varchar" MaxLength="40" />
+          <Property Name="Phone" Type="varchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="qds162435604_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="qds162435604_dbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCarNO" EntityType="qds162435604_dbModel.tblCarNO" />
+          <EntitySet Name="tblCarNO_bak" EntityType="qds162435604_dbModel.tblCarNO_bak" />
+          <EntitySet Name="UserInfo" EntityType="qds162435604_dbModel.UserInfo" />
+        </EntityContainer>
+        <EntityType Name="tblCarNO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="CarNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Adress" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="11" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblCarNO_bak">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CarNo" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="CarNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Adress" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="11" Unicode="true" FixedLength="false" />
+          <Property Name="Memo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
+          <Property Name="Password" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Mail" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="qds162435604_dbModelStoreContainer" CdmEntityContainer="qds162435604_dbEntities">
+          <EntitySetMapping Name="tblCarNO">
+            <EntityTypeMapping TypeName="qds162435604_dbModel.tblCarNO">
+              <MappingFragment StoreEntitySet="tblCarNO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarNO_bak">
+            <EntityTypeMapping TypeName="qds162435604_dbModel.tblCarNO_bak">
+              <MappingFragment StoreEntitySet="tblCarNO_bak">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="qds162435604_dbModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
