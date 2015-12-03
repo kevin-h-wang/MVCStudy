@@ -1,0 +1,9 @@
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\bin\Debug\Test.Model.dll.config
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\bin\Debug\Test.Model.dll
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\bin\Debug\Test.Model.pdb
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\bin\Debug\EntityFramework.dll
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\bin\Debug\EntityFramework.xml
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\obj\Debug\Test.Model.csprojResolveAssemblyReference.cache
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\obj\Debug\Test.Model.dll
+F:\KevinSpace\Git\EasyUIDemo.MVC\Test.Model\obj\Debug\Test.Model.pdb

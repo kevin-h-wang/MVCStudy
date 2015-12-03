@@ -7,12 +7,12 @@
 <html>
 <head>
     <title>Login</title>
-    <link href="../../Content/EasyUI/themes/default/easyui.css" rel="stylesheet" />
-    <link href="../../Content/EasyUI/themes/icon.css" rel="stylesheet" />
-    <link href="../../Content/admin.css" rel="stylesheet" />
-    <script src="../../Content/EasyUI/jquery.min.js"></script>
-    <script src="../../Content/EasyUI/jquery.easyui.min.js"></script>
-    <script src="../../Content/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/EasyUI/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI/jquery.min.js"></script>
+    <script src="~/Content/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Content/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript">
         //异步实现用户的登录
         function LoginUserInfo() {
@@ -23,7 +23,7 @@
             }
             //ajax提交
             $.ajax({
-                url: "Login/CheckUserLogin",
+                url: '@Url.Content("~/Login/CheckUserLogin/")',
                 type: "POST",
                 dataType: "json",
                 data: { "Name": $("#UserName").val(), "Password": $("#Password").val() },
@@ -31,15 +31,15 @@
                     if (data.result == "success") {
                         //window.location.href = "Home/GetView?viewPara=Index";
                         //window.location.href = "@Url.Content("/Home/Index/")";
-                        window.location.href = "/Home/Index";
+                        window.location.href = '@Url.Content("~/Home/Index/")';
                     }
                     else {
-                        window.location.href = "/Login/Login/";
+                        window.location.href = '@Url.Content("~/Login/Login/")';
                     }
                 },
                 error: function (xhr, error, ex) {
                     alert("出现错误，请稍后再试，带来不便，敬请谅解");
-                    window.location.href = "/Login/Login/";
+                    window.location.href = '@Url.Content("~/Login/Login/")';
                 }
             });
         }
@@ -52,7 +52,7 @@
             <table id="tblAdd">
                 <tr>
                     <td>
-                        <label for="UserName">用户名：</label></td>
+                        <label for="UserName">用户名2：</label></td>
                     <td>
                         <input class="easyui-validatebox" type="text" id="UserName" name="UserName" value="@ViewBag.UserName" data-options="required:true,validType:'length[1,32]'" /></td>
                     <td>

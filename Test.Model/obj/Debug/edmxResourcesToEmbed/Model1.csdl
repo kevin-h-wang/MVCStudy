@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="qds162435604_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="qds162435604_dbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCarNO" EntityType="qds162435604_dbModel.tblCarNO" />
+    <EntitySet Name="tblCarNO_bak" EntityType="qds162435604_dbModel.tblCarNO_bak" />
+    <EntitySet Name="UserInfo" EntityType="qds162435604_dbModel.UserInfo" />
+  </EntityContainer>
+  <EntityType Name="tblCarNO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+    <Property Name="CarNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Adress" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Mobile" Type="String" MaxLength="11" Unicode="true" FixedLength="false" />
+    <Property Name="Memo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblCarNO_bak">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="CarNo" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+    <Property Name="CarNo" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="Adress" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Mobile" Type="String" MaxLength="11" Unicode="true" FixedLength="false" />
+    <Property Name="Memo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
+    <Property Name="Password" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="Mail" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Enable" Type="Boolean" />
+    <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

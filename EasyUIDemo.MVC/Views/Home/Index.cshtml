@@ -8,16 +8,16 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>EasyUIDemo</title>
-    <link href="../../Content/EasyUI/themes/default/easyui.css" rel="stylesheet" />
-    <link href="../../Content/EasyUI/themes/icon.css" rel="stylesheet" />
-    <link href="../../Content/admin.css" rel="stylesheet" />
-    <script src="../../Content/EasyUI/jquery.min.js"></script>
-    <script src="../../Content/EasyUI/jquery.easyui.min.js"></script>
-    <script src="../../Scripts/common.js"></script>
+    <link href="~/Content/EasyUI/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI/jquery.min.js"></script>
+    <script src="~/Content/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/common.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit:true,scroll:'no'">
     <div data-options="region:'north',border:false" style="height: 74px; background: #2596ea; padding: 10px">
-        <img src="../../Content/images/logo.png" />EasyUIDemo
+        EasyUIDemo
     </div>
     <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 170px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">
@@ -28,9 +28,22 @@
                             <span>基本设置</span>
                             <ul>
                                 <li data-options="iconCls:'icon-user'">
-                                    <a onclick="addTab('用户管理','/User/User_List','')"><span>用户管理</span></a>
+                                    <a onclick="addTab('用户管理','@Url.Content("~/User/User_List")','')"><span>用户管理</span></a>
                                 </li>
                             </ul>
+                        </li>
+                        <li data-options="iconCls:'icon-joystick'">
+                            <span>学位管理</span>
+                            <ul>
+                                <li data-options="iconCls:'icon-user'">
+                                    <a onclick="addTab('车牌管理','@Url.Content("~/Car/CarList")','')"><span>车牌管理</span></a>
+                                </li>
+                            </ul>
+                            
+                        </li>
+                        <li data-options="iconCls:'icon-joystick'">
+                            <span>系统管理</span>
+                            
                         </li>
                     </ul>
                 </div>
@@ -44,7 +57,7 @@
         <div id="tabs" class="easyui-tabs" data-options="tools:'#tab-tools',fit:true,border:false" >
             <div title="主页" data-options="iconCls:'icon-house'" style="padding: 10px;">
                 @*<iframe scrolling="auto" frameborder="0"  src="Home/GetView?viewPara=../User/User_Add" style="width:100%;height:100%;"></iframe>*@
-                <iframe scrolling="auto" frameborder="0"  src="@Url.Content("/Home/Home/")" style="width:100%;height:100%;"></iframe>
+                <iframe scrolling="auto" frameborder="0"  src="@Url.Content("~/Home/Home/")" style="width:100%;height:100%;"></iframe>
             </div>
         </div>
         <div id="tab-tools">

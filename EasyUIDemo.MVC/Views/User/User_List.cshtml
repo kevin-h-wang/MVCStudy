@@ -8,12 +8,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>用户管理</title>
-    <link href="../../Content/EasyUI/themes/default/easyui.css" rel="stylesheet" />
-    <link href="../../Content/EasyUI/themes/icon.css" rel="stylesheet" />
-    <link href="../../Content/admin.css" rel="stylesheet" />
-    <script src="../../Content/EasyUI/jquery.min.js"></script>
-    <script src="../../Content/EasyUI/jquery.easyui.min.js"></script>
-    <script src="../../Content/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/EasyUI/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/themes/icon.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI/jquery.min.js"></script>
+    <script src="~/Content/EasyUI/jquery.easyui.min.js"></script>
+     <script src="~/Content/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     <script>
         $(function () {
             initTable();
@@ -30,7 +30,7 @@
                 nowrap: true,
                 autoRowHeight: true,
                 striped: true,
-                url: '/User/GetAllUserInfo',
+                url: '@Url.Content("~/User/GetAllUserInfo")',
                 sortName: 'ID',
                 sortOrder: 'asc',
                 border: true,

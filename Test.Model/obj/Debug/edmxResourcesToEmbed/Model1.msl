@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="qds162435604_dbModelStoreContainer" CdmEntityContainer="qds162435604_dbEntities">
+    <EntitySetMapping Name="tblCarNO">
+      <EntityTypeMapping TypeName="qds162435604_dbModel.tblCarNO">
+        <MappingFragment StoreEntitySet="tblCarNO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Memo" ColumnName="Memo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCarNO_bak">
+      <EntityTypeMapping TypeName="qds162435604_dbModel.tblCarNO_bak">
+        <MappingFragment StoreEntitySet="tblCarNO_bak">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Memo" ColumnName="Memo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="qds162435604_dbModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
