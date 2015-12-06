@@ -1892,6 +1892,12 @@
   <ItemGroup>
     <Content Include="Views\Car\CarList.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ViewPageBase.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\mvc.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

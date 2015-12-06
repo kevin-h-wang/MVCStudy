@@ -127,7 +127,7 @@
                 };
 
                 //发送异步请求到后台保存用户数据
-                $.post("/User/AddUser", postdata, function (data) {
+                $.post('@Url.Content("~/User/AddUser")', postdata, function (data) {
                     if (data == "OK") {
                         alert("添加成功");
                         $('#AddUserDialog').dialog('close');
