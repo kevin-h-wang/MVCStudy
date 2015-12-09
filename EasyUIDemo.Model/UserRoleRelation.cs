@@ -12,15 +12,17 @@ namespace EasyUIDemo.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserInfo
+    public partial class UserRoleRelation
     {
-        public int ID { get; set; }
-        public string Password { get; set; }
-        public string Mail { get; set; }
-        public string Phone { get; set; }
+        public int RoleID { get; set; }
+        public System.Guid UserID { get; set; }
+        public bool IsDefaultRole { get; set; }
+        public string Creator { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
-        public Nullable<bool> Enable { get; set; }
-        public string Address { get; set; }
-        public string Name { get; set; }
+        public string LastModifier { get; set; }
+        public Nullable<System.DateTime> LastModifyTime { get; set; }
+    
+        public virtual Role T_SYS_Role { get; set; }
+        public virtual User T_SYS_User { get; set; }
     }
 }

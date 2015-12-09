@@ -25,6 +25,15 @@ namespace EasyUIDemo.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Action> T_SYS_Action { get; set; }
+        public DbSet<Menu> T_SYS_Menu { get; set; }
+        public DbSet<Module> T_SYS_Module { get; set; }
+        public DbSet<Permission> T_SYS_Permission { get; set; }
+        public DbSet<Role> T_SYS_Role { get; set; }
+        public DbSet<User> T_SYS_User { get; set; }
+        public DbSet<UserRoleRelation> T_SYS_UserRoleRelation { get; set; }
+        public DbSet<tblCarNO> tblCarNO { get; set; }
+        public DbSet<tblCarNO_bak> tblCarNO_bak { get; set; }
         public DbSet<UserInfo> UserInfo { get; set; }
     }
 }

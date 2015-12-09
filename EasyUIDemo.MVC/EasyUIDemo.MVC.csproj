@@ -118,6 +118,7 @@
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1893,10 +1894,8 @@
     <Content Include="Views\Car\CarList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\ViewPageBase.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\PublishProfiles\mvc.pubxml" />
+    <Content Include="Views\System\ActionList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

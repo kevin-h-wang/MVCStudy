@@ -6,40 +6,535 @@
     <edmx:StorageModels>
     <Schema Namespace="EasyUIDemoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="EasyUIDemoDBModelStoreContainer">
+          <EntitySet Name="T_SYS_Action" EntityType="EasyUIDemoDBModel.Store.T_SYS_Action" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_SYS_Menu" EntityType="EasyUIDemoDBModel.Store.T_SYS_Menu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_SYS_Module" EntityType="EasyUIDemoDBModel.Store.T_SYS_Module" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_SYS_Permission" EntityType="EasyUIDemoDBModel.Store.T_SYS_Permission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_SYS_Role" EntityType="EasyUIDemoDBModel.Store.T_SYS_Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_SYS_User" EntityType="EasyUIDemoDBModel.Store.T_SYS_User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_SYS_UserRoleRelation" EntityType="EasyUIDemoDBModel.Store.T_SYS_UserRoleRelation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCarNO" EntityType="EasyUIDemoDBModel.Store.tblCarNO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCarNO_bak" EntityType="EasyUIDemoDBModel.Store.tblCarNO_bak" store:Type="Tables" store:Schema="dbo" store:Name="tblCarNO_bak">
+            <DefiningQuery>SELECT 
+      [tblCarNO_bak].[ID] AS [ID], 
+      [tblCarNO_bak].[CarNo] AS [CarNo], 
+      [tblCarNO_bak].[Adress] AS [Adress], 
+      [tblCarNO_bak].[Mobile] AS [Mobile], 
+      [tblCarNO_bak].[Memo] AS [Memo]
+      FROM [dbo].[tblCarNO_bak] AS [tblCarNO_bak]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="UserInfo" EntityType="EasyUIDemoDBModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_T_SYS_Menu_ModuleID" Association="EasyUIDemoDBModel.Store.FK_T_SYS_Menu_ModuleID">
+            <End Role="T_SYS_Module" EntitySet="T_SYS_Module" />
+            <End Role="T_SYS_Menu" EntitySet="T_SYS_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_Permission_ActionID" Association="EasyUIDemoDBModel.Store.FK_T_SYS_Permission_ActionID">
+            <End Role="T_SYS_Action" EntitySet="T_SYS_Action" />
+            <End Role="T_SYS_Permission" EntitySet="T_SYS_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_Permission_ModuleID" Association="EasyUIDemoDBModel.Store.FK_T_SYS_Permission_ModuleID">
+            <End Role="T_SYS_Module" EntitySet="T_SYS_Module" />
+            <End Role="T_SYS_Permission" EntitySet="T_SYS_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_Permission_RoleID" Association="EasyUIDemoDBModel.Store.FK_T_SYS_Permission_RoleID">
+            <End Role="T_SYS_Role" EntitySet="T_SYS_Role" />
+            <End Role="T_SYS_Permission" EntitySet="T_SYS_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_UserRoleRelation_RoleID" Association="EasyUIDemoDBModel.Store.FK_T_SYS_UserRoleRelation_RoleID">
+            <End Role="T_SYS_Role" EntitySet="T_SYS_Role" />
+            <End Role="T_SYS_UserRoleRelation" EntitySet="T_SYS_UserRoleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_UserRoleRelation_UserID" Association="EasyUIDemoDBModel.Store.FK_T_SYS_UserRoleRelation_UserID">
+            <End Role="T_SYS_User" EntitySet="T_SYS_User" />
+            <End Role="T_SYS_UserRoleRelation" EntitySet="T_SYS_UserRoleRelation" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="UserInfo">
+        <EntityType Name="T_SYS_Action">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Mail" Type="varchar" Nullable="false" MaxLength="32" />
-          <Property Name="Phone" Type="varchar" MaxLength="16" />
-          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="OrderNo" Type="numeric" Precision="24" Scale="4" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Available" Type="bit" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
           <Property Name="CreateTime" Type="datetime" />
-          <Property Name="Enable" Type="bit" Nullable="false" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
         </EntityType>
+        <EntityType Name="T_SYS_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModuleID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Level" Type="int" />
+          <Property Name="ParentID" Type="uniqueidentifier" />
+          <Property Name="URL" Type="nvarchar" MaxLength="400" />
+          <Property Name="LinkIcon" Type="nvarchar" MaxLength="100" />
+          <Property Name="Available" Type="bit" />
+          <Property Name="MenuType" Type="int" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_SYS_Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="OrderNo" Type="numeric" Precision="24" Scale="4" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Available" Type="bit" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_SYS_Permission">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+            <PropertyRef Name="ActionID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_SYS_Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" />
+          <Property Name="Available" Type="bit" />
+          <Property Name="IsSystemRole" Type="bit" />
+          <Property Name="RoleDesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_SYS_User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CnName" Type="nvarchar" MaxLength="40" />
+          <Property Name="EnName" Type="nvarchar" MaxLength="40" />
+          <Property Name="Account" Type="nvarchar" MaxLength="40" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Available" Type="bit" />
+          <Property Name="LoginFailCount" Type="int" />
+          <Property Name="LastLoginFailDate" Type="datetime" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="40" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="40" />
+          <Property Name="GenderID" Type="int" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="T_SYS_UserRoleRelation">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDefaultRole" Type="bit" Nullable="false" />
+          <Property Name="Creator" Type="nvarchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastModifier" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastModifyTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCarNO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="CarNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“qds162435604_db.dbo.tblCarNO_bak”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="tblCarNO_bak">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CarNo" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="CarNo" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+          <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" />
+          <Property Name="Mail" Type="varchar" MaxLength="40" />
+          <Property Name="Phone" Type="varchar" MaxLength="40" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK_T_SYS_Menu_ModuleID">
+          <End Role="T_SYS_Module" Type="EasyUIDemoDBModel.Store.T_SYS_Module" Multiplicity="0..1" />
+          <End Role="T_SYS_Menu" Type="EasyUIDemoDBModel.Store.T_SYS_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Menu">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_Permission_ActionID">
+          <End Role="T_SYS_Action" Type="EasyUIDemoDBModel.Store.T_SYS_Action" Multiplicity="1" />
+          <End Role="T_SYS_Permission" Type="EasyUIDemoDBModel.Store.T_SYS_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Action">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Permission">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_Permission_ModuleID">
+          <End Role="T_SYS_Module" Type="EasyUIDemoDBModel.Store.T_SYS_Module" Multiplicity="1" />
+          <End Role="T_SYS_Permission" Type="EasyUIDemoDBModel.Store.T_SYS_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Permission">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_Permission_RoleID">
+          <End Role="T_SYS_Role" Type="EasyUIDemoDBModel.Store.T_SYS_Role" Multiplicity="1" />
+          <End Role="T_SYS_Permission" Type="EasyUIDemoDBModel.Store.T_SYS_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Permission">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_UserRoleRelation_RoleID">
+          <End Role="T_SYS_Role" Type="EasyUIDemoDBModel.Store.T_SYS_Role" Multiplicity="1" />
+          <End Role="T_SYS_UserRoleRelation" Type="EasyUIDemoDBModel.Store.T_SYS_UserRoleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_UserRoleRelation">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_UserRoleRelation_UserID">
+          <End Role="T_SYS_User" Type="EasyUIDemoDBModel.Store.T_SYS_User" Multiplicity="1" />
+          <End Role="T_SYS_UserRoleRelation" Type="EasyUIDemoDBModel.Store.T_SYS_UserRoleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_UserRoleRelation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EasyUIDemoDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="EasyUIDemoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_SYS_Action" EntityType="EasyUIDemoDBModel.Action" />
+          <EntitySet Name="T_SYS_Menu" EntityType="EasyUIDemoDBModel.Menu" />
+          <EntitySet Name="T_SYS_Module" EntityType="EasyUIDemoDBModel.Module" />
+          <EntitySet Name="T_SYS_Permission" EntityType="EasyUIDemoDBModel.Permission" />
+          <EntitySet Name="T_SYS_Role" EntityType="EasyUIDemoDBModel.Role" />
+          <EntitySet Name="T_SYS_User" EntityType="EasyUIDemoDBModel.User" />
+          <EntitySet Name="T_SYS_UserRoleRelation" EntityType="EasyUIDemoDBModel.UserRoleRelation" />
+          <EntitySet Name="tblCarNO" EntityType="EasyUIDemoDBModel.tblCarNO" />
+          <EntitySet Name="tblCarNO_bak" EntityType="EasyUIDemoDBModel.tblCarNO_bak" />
+          <AssociationSet Name="FK_T_SYS_Permission_ActionID" Association="EasyUIDemoDBModel.FK_T_SYS_Permission_ActionID">
+            <End Role="T_SYS_Action" EntitySet="T_SYS_Action" />
+            <End Role="T_SYS_Permission" EntitySet="T_SYS_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_Menu_ModuleID" Association="EasyUIDemoDBModel.FK_T_SYS_Menu_ModuleID">
+            <End Role="T_SYS_Module" EntitySet="T_SYS_Module" />
+            <End Role="T_SYS_Menu" EntitySet="T_SYS_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_Permission_ModuleID" Association="EasyUIDemoDBModel.FK_T_SYS_Permission_ModuleID">
+            <End Role="T_SYS_Module" EntitySet="T_SYS_Module" />
+            <End Role="T_SYS_Permission" EntitySet="T_SYS_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_Permission_RoleID" Association="EasyUIDemoDBModel.FK_T_SYS_Permission_RoleID">
+            <End Role="T_SYS_Role" EntitySet="T_SYS_Role" />
+            <End Role="T_SYS_Permission" EntitySet="T_SYS_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_UserRoleRelation_RoleID" Association="EasyUIDemoDBModel.FK_T_SYS_UserRoleRelation_RoleID">
+            <End Role="T_SYS_Role" EntitySet="T_SYS_Role" />
+            <End Role="T_SYS_UserRoleRelation" EntitySet="T_SYS_UserRoleRelation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_SYS_UserRoleRelation_UserID" Association="EasyUIDemoDBModel.FK_T_SYS_UserRoleRelation_UserID">
+            <End Role="T_SYS_User" EntitySet="T_SYS_User" />
+            <End Role="T_SYS_UserRoleRelation" EntitySet="T_SYS_UserRoleRelation" />
+          </AssociationSet>
           <EntitySet Name="UserInfo" EntityType="EasyUIDemoDBModel.UserInfo" />
         </EntityContainer>
-        <EntityType Name="UserInfo">
+        <EntityType Name="Action">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mail" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Phone" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="OrderNo" Precision="24" Scale="4" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Available" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="CreateTime" Precision="3" />
-          <Property Type="Boolean" Name="Enable" Nullable="false" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_Permission" Relationship="EasyUIDemoDBModel.FK_T_SYS_Permission_ActionID" FromRole="T_SYS_Action" ToRole="T_SYS_Permission" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="ModuleID" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Level" />
+          <Property Type="Guid" Name="ParentID" />
+          <Property Type="String" Name="URL" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkIcon" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Available" />
+          <Property Type="Int32" Name="MenuType" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_Module" Relationship="EasyUIDemoDBModel.FK_T_SYS_Menu_ModuleID" FromRole="T_SYS_Menu" ToRole="T_SYS_Module" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ParentID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="OrderNo" Precision="24" Scale="4" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Available" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_Menu" Relationship="EasyUIDemoDBModel.FK_T_SYS_Menu_ModuleID" FromRole="T_SYS_Module" ToRole="T_SYS_Menu" />
+          <NavigationProperty Name="T_SYS_Permission" Relationship="EasyUIDemoDBModel.FK_T_SYS_Permission_ModuleID" FromRole="T_SYS_Module" ToRole="T_SYS_Permission" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+            <PropertyRef Name="ActionID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Type="Int32" Name="ModuleID" Nullable="false" />
+          <Property Type="Int32" Name="ActionID" Nullable="false" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_Action" Relationship="EasyUIDemoDBModel.FK_T_SYS_Permission_ActionID" FromRole="T_SYS_Permission" ToRole="T_SYS_Action" />
+          <NavigationProperty Name="T_SYS_Module" Relationship="EasyUIDemoDBModel.FK_T_SYS_Permission_ModuleID" FromRole="T_SYS_Permission" ToRole="T_SYS_Module" />
+          <NavigationProperty Name="T_SYS_Role" Relationship="EasyUIDemoDBModel.FK_T_SYS_Permission_RoleID" FromRole="T_SYS_Permission" ToRole="T_SYS_Role" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Available" />
+          <Property Type="Boolean" Name="IsSystemRole" />
+          <Property Type="String" Name="RoleDesc" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_Permission" Relationship="EasyUIDemoDBModel.FK_T_SYS_Permission_RoleID" FromRole="T_SYS_Role" ToRole="T_SYS_Permission" />
+          <NavigationProperty Name="T_SYS_UserRoleRelation" Relationship="EasyUIDemoDBModel.FK_T_SYS_UserRoleRelation_RoleID" FromRole="T_SYS_Role" ToRole="T_SYS_UserRoleRelation" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="CnName" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EnName" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Account" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Available" />
+          <Property Type="Int32" Name="LoginFailCount" />
+          <Property Type="DateTime" Name="LastLoginFailDate" Precision="3" />
+          <Property Type="Int32" Name="UserType" />
+          <Property Type="String" Name="Email" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Tel" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="GenderID" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_UserRoleRelation" Relationship="EasyUIDemoDBModel.FK_T_SYS_UserRoleRelation_UserID" FromRole="T_SYS_User" ToRole="T_SYS_UserRoleRelation" />
+        </EntityType>
+        <EntityType Name="UserRoleRelation">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="UserID" Nullable="false" />
+          <Property Type="Boolean" Name="IsDefaultRole" Nullable="false" />
+          <Property Type="String" Name="Creator" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="String" Name="LastModifier" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifyTime" Precision="3" />
+          <NavigationProperty Name="T_SYS_Role" Relationship="EasyUIDemoDBModel.FK_T_SYS_UserRoleRelation_RoleID" FromRole="T_SYS_UserRoleRelation" ToRole="T_SYS_Role" />
+          <NavigationProperty Name="T_SYS_User" Relationship="EasyUIDemoDBModel.FK_T_SYS_UserRoleRelation_UserID" FromRole="T_SYS_UserRoleRelation" ToRole="T_SYS_User" />
+        </EntityType>
+        <EntityType Name="tblCarNO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CarNo" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adress" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCarNO_bak">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CarNo" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CarNo" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Adress" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Memo" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_T_SYS_Permission_ActionID">
+          <End Type="EasyUIDemoDBModel.Action" Role="T_SYS_Action" Multiplicity="1" />
+          <End Type="EasyUIDemoDBModel.Permission" Role="T_SYS_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Action">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Permission">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_Menu_ModuleID">
+          <End Type="EasyUIDemoDBModel.Module" Role="T_SYS_Module" Multiplicity="0..1" />
+          <End Type="EasyUIDemoDBModel.Menu" Role="T_SYS_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Menu">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_Permission_ModuleID">
+          <End Type="EasyUIDemoDBModel.Module" Role="T_SYS_Module" Multiplicity="1" />
+          <End Type="EasyUIDemoDBModel.Permission" Role="T_SYS_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Permission">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_Permission_RoleID">
+          <End Type="EasyUIDemoDBModel.Role" Role="T_SYS_Role" Multiplicity="1" />
+          <End Type="EasyUIDemoDBModel.Permission" Role="T_SYS_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_Permission">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_UserRoleRelation_RoleID">
+          <End Type="EasyUIDemoDBModel.Role" Role="T_SYS_Role" Multiplicity="1" />
+          <End Type="EasyUIDemoDBModel.UserRoleRelation" Role="T_SYS_UserRoleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_UserRoleRelation">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_SYS_UserRoleRelation_UserID">
+          <End Type="EasyUIDemoDBModel.User" Role="T_SYS_User" Multiplicity="1" />
+          <End Type="EasyUIDemoDBModel.UserRoleRelation" Role="T_SYS_UserRoleRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_SYS_User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_SYS_UserRoleRelation">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Password" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mail" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateTime" Precision="3" />
+          <Property Type="Boolean" Name="Enable" />
+          <Property Type="String" Name="Address" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" MaxLength="40" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -47,16 +542,152 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EasyUIDemoDBModelStoreContainer" CdmEntityContainer="EasyUIDemoDBEntities">
+          <EntitySetMapping Name="T_SYS_Action">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.Action">
+              <MappingFragment StoreEntitySet="T_SYS_Action">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYS_Menu">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.Menu">
+              <MappingFragment StoreEntitySet="T_SYS_Menu">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="MenuType" ColumnName="MenuType" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="LinkIcon" ColumnName="LinkIcon" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYS_Module">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.Module">
+              <MappingFragment StoreEntitySet="T_SYS_Module">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYS_Permission">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.Permission">
+              <MappingFragment StoreEntitySet="T_SYS_Permission">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYS_Role">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.Role">
+              <MappingFragment StoreEntitySet="T_SYS_Role">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+                <ScalarProperty Name="IsSystemRole" ColumnName="IsSystemRole" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYS_User">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.User">
+              <MappingFragment StoreEntitySet="T_SYS_User">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="LastLoginFailDate" ColumnName="LastLoginFailDate" />
+                <ScalarProperty Name="LoginFailCount" ColumnName="LoginFailCount" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="EnName" ColumnName="EnName" />
+                <ScalarProperty Name="CnName" ColumnName="CnName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_SYS_UserRoleRelation">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.UserRoleRelation">
+              <MappingFragment StoreEntitySet="T_SYS_UserRoleRelation">
+                <ScalarProperty Name="LastModifyTime" ColumnName="LastModifyTime" />
+                <ScalarProperty Name="LastModifier" ColumnName="LastModifier" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="IsDefaultRole" ColumnName="IsDefaultRole" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarNO">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.tblCarNO">
+              <MappingFragment StoreEntitySet="tblCarNO">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarNO_bak">
+            <EntityTypeMapping TypeName="EasyUIDemoDBModel.tblCarNO_bak">
+              <MappingFragment StoreEntitySet="tblCarNO_bak">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserInfo">
             <EntityTypeMapping TypeName="EasyUIDemoDBModel.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Enable" ColumnName="Enable" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

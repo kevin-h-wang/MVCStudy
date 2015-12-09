@@ -237,7 +237,7 @@
                 //发送异步请求删除数据
                 $.messager.confirm("删除信息", "您确认删除<font color='Red' size='3'>" + UNameList + "</font>用户吗？", function (DeleteUserInfo) {
                     if (DeleteUserInfo) {
-                        $.post("/User/DeleteUser", { deleteUserInfoID: ids, UName: UNameList }, function (data) {
+                        $.post('@Url.Content("~/User/DeleteUser")', { deleteUserInfoID: ids, UName: UNameList }, function (data) {
                             if (data == "OK") {
                                 $.messager.alert("友情提示", "删除成功");
                                 $("#test").datagrid("reload");
