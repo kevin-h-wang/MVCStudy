@@ -29,7 +29,7 @@ namespace EasyUIDemo.MVC.Controllers
             //判断用户是否为空
             if (CurrentUserInfo == null)
             {
-                Response.Redirect("/Login/Index");
+                Response.Redirect(Url.Content("~/Login/Login"));
             }
         }
 

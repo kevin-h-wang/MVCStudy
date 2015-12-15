@@ -10,7 +10,6 @@ namespace EasyUIDemo.MVC.Controllers
     {
         //
         // GET: /System/
-
         public ActionResult Index()
         {
             return View();
